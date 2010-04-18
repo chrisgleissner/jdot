@@ -64,44 +64,6 @@
     <build>
         <plugins>
             <!--
-                Attempts to register the generated sources under the target folder as source folders. This approach is
-                more elegant than copying the generated folders to the committed src folder. If the generated folders
-                are not automatically recognized as source folders by your IDE, try the "gen2src" profile instead, see
-                below.
-            -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${annotations.directory}</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>add-test-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${test-annotations.directory}</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!--
                 Generates sources via the Java 6 annotation processor, then compiles them. The compile and testCompile
                 goals gets referenced in two different phases each. Phase 1: Generates (test) sources and attempts
                 compilation whilst ignoring benign javac warnings. Phase 2: Compiles if necessary and breaks the build
@@ -130,6 +92,7 @@
                             <goal>compile</goal>
                         </goals>
                         <configuration>
+                            <generatedSourcesDirectory>${annotations.directory}</generatedSourcesDirectory>
                             <failOnError>false</failOnError>
                         </configuration>
                     </execution>
@@ -155,6 +118,7 @@
                             <goal>testCompile</goal>
                         </goals>
                         <configuration>
+                            <generatedTestSourcesDirectory>${test-annotations.directory}</generatedTestSourcesDirectory>
                             <failOnError>false</failOnError>
                         </configuration>
                     </execution>
@@ -172,6 +136,72 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!--
+            Profile to register the generated sources under the target folder as source folders, enabled by default. If
+            the generated folders are not automatically recognized by your IDE, try the "gen2src" profile instead, see
+            below.
+        -->
+        <profile>
+            <id>gen2target</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>add-source</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${annotations.directory}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>add-test-source</id>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-test-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${test-annotations.directory}</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--
+            Enable this profile if your IDE fails to recognize generated sources under the target folder. Sample usage:
+            mvn install -Pgen2src. This profile generates sources under the src rather than target folder and thus
+            prepares them for a later commit. The approach of committing generated sources is not elegant, but can be
+            used to avoid problems with some IDEs that fail to register generated sources properly. Source control
+            repositories such as Subversion which automatically perform a content diff on files prior to commit can
+            handle this set-up well and won't try to re-commit any re-generated files unless their contents changed.
+            Enabling this profile will automatically disable the default profile "gen2target".
+        -->
+        <profile>
+            <id>gen2src</id>
+            <properties>
+                <annotations.directory>${basedir}/src/main/java</annotations.directory>
+                <test-annotations.directory>${basedir}/src/test/java</test-annotations.directory>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -207,50 +237,4 @@
         <tag>HEAD</tag>
         <url>http://code.google.com/p/jdot/source/browse/</url>
     </scm>
-
-    <profiles>
-        <!--
-            Enable this profile if your IDE fails to recognize generated sources under the target folder. This profile
-            moves generated sources from target to the src folder and thus prepares them for a later commit. The
-            approach of committing generated sources is not very elegant, but necessary to avoid problems with a variety
-            of IDEs that fail to register generated sources properly. Source control repositories such as Subversion
-            which automatically perform a content diff on files prior to commit can handle this set-up well and won't
-            try to re-commit any re-generated files unless their contents changed.
-        -->
-        <profile>
-            <id>gen2src</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <phase>prepare-package</phase>
-                                <configuration>
-                                    <tasks>
-                                        <move todir="${basedir}/src/main/java" preservelastmodified="true"
-                                            failonerror="false">
-                                            <fileset dir="${annotations.directory}">
-                                                <include name="**/*" />
-                                            </fileset>
-                                        </move>
-                                        <move todir="${basedir}/src/test/java" preservelastmodified="true"
-                                            failonerror="false">
-                                            <fileset dir="${test-annotations.directory}">
-                                                <include name="**/*" />
-                                            </fileset>
-                                        </move>
-                                    </tasks>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 </project>
