@@ -1,3 +1,5 @@
+![jdot logo](logo.png)
+
 # jdot
 
 Java Domain Object Templater (JDot) is a code generator which keeps domain classes concise like a dot. 
