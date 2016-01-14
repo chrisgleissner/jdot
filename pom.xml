@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.googlecode.jdot</groupId>
+    <groupId>com.github.jdot</groupId>
     <artifactId>jdot</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -34,7 +34,7 @@
 
     <developers>
         <developer>
-            <id>gleissc</id>
+            <id>chrisgleissner</id>
             <name>Christian Gleissner</name>
             <organization>none</organization>
             <email>chrisgleissner@gmail.com</email>
@@ -50,7 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.6.1</version>
+                <version>2.10.3</version>
             </plugin>
         </plugins>
     </reporting>
@@ -75,10 +75,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.2</version>
+                <version>3.3</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
                 <executions>
                     <!-- Generation and compilation of main sources -->
@@ -232,9 +232,8 @@
     </dependencies>
 
     <scm>
-        <connection>scm:svn:http://jdot.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://jdot.googlecode.com/svn/trunk/</developerConnection>
-        <tag>HEAD</tag>
-        <url>http://code.google.com/p/jdot/source/browse/</url>
+        <url>https://github.com/chrisgleissner/jdot</url>
+        <connection>scm:git:git://github.com/chrisgleissner/jdot.git</connection>
+        <developerConnection>scm:git:git@github.com:chrisgleissner/jdot.git</developerConnection>
     </scm>
 </project>

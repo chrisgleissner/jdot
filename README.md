@@ -6,7 +6,7 @@ Java Domain Object Templater (JDot) is a code generator which keeps domain class
 The generation is driven by annotations on your domain classes or interfaces and uses the compile-time Java 6 Annotation Processor.
 
 ## Requirements
-- Java 6
+- Oracle JDK 7
 
 ## Code Generation Driver
 The code generation may be driven by:
