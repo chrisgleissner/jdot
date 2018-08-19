@@ -9,7 +9,7 @@ The generation is driven by annotations on your domain classes or interfaces and
 [![Build Status](https://travis-ci.org/chrisgleissner/jdot.svg?branch=master)](https://travis-ci.org/chrisgleissner/jdot)
 
 ## Requirements
-- Oracle JDK 7
+- JDK 8
 
 ## Code Generation Driver
 The code generation may be driven by:
