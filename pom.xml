@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -11,10 +11,11 @@
 
     <name>JDot</name>
     <description>Java Domain Object Templater (JDot) is a code generator for domain objects which
-	keeps classes concise like a dot. Generated code Data Transfer Objects (DTOs) with Java Bean getters/setters,
-	builders for immutable domain objects, mappers between domain and DTO classes, as well as
-	standard Java methods such as hashCode and equals. The generation is driven by annotations
-	and uses the compile-time Java 6 Annotation Processor.</description>
+        keeps classes concise like a dot. Generated code Data Transfer Objects (DTOs) with Java Bean getters/setters,
+        builders for immutable domain objects, mappers between domain and DTO classes, as well as
+        standard Java methods such as hashCode and equals. The generation is driven by annotations
+        and uses the compile-time Java 6 Annotation Processor.
+    </description>
 
     <url>http://code.google.com/p/jdot/</url>
     <inceptionYear>2010</inceptionYear>
@@ -58,7 +59,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <annotations.directory>${project.build.directory}/generated-sources/annotations</annotations.directory>
-        <test-annotations.directory>${project.build.directory}/generated-sources/test-annotations</test-annotations.directory>
+        <test-annotations.directory>${project.build.directory}/generated-sources/test-annotations
+        </test-annotations.directory>
     </properties>
 
     <build>
@@ -134,6 +136,19 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.3.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>2.2.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 
@@ -200,6 +215,45 @@
                 <annotations.directory>${basedir}/src/main/java</annotations.directory>
                 <test-annotations.directory>${basedir}/src/test/java</test-annotations.directory>
             </properties>
+        </profile>
+
+        <profile>
+            <id>jacoco</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.8.2</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>prepare-integration-test-agent</id>
+                                <goals>
+                                    <goal>prepare-agent-integration</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>generate-integration-test-report</id>
+                                <goals>
+                                    <goal>report-integration</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
