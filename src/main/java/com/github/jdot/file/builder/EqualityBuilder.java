@@ -147,7 +147,7 @@ public class EqualityBuilder extends JavaFileBuilder<EqualityBuilder, JavaFile> 
     }
 
     private Collection<State> getIds() {
-        List<State> identifiers = new ArrayList<State>();
+        List<State> identifiers = new ArrayList<>();
         if (javaFile.getType().isInterface()) {
             for (Property property : javaFile.getType().getProperties()) {
                 if (property.hasAnnotation(Id.class)) {

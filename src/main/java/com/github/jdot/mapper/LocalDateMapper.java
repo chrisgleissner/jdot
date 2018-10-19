@@ -16,20 +16,20 @@
 
 package com.github.jdot.mapper;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
-import org.joda.time.DateTime;
-
 /**
- * Mapper between Joda {@code DateTime} and {@link Date}.
+ * Mapper between {@code LocalDate} and {@link Date}.
  * 
  * @author Christian Gleissner
  */
-public class DateTimeMapper implements TypeMapper<DateTime, Date> {
+public class LocalDateMapper implements TypeMapper<LocalDate, Date> {
 
     @Override
-    public Class<DateTime> getDomainType() {
-        return DateTime.class;
+    public Class<LocalDate> getDomainType() {
+        return LocalDate.class;
     }
 
     @Override
@@ -38,13 +38,13 @@ public class DateTimeMapper implements TypeMapper<DateTime, Date> {
     }
 
     @Override
-    public DateTime toDomain(Date date) {
-        return new DateTime(date);
+    public LocalDate toDomain(Date d) {
+        return LocalDate.ofInstant(d.toInstant(), ZoneId.systemDefault());
     }
 
     @Override
-    public Date toView(DateTime dateTime) {
-        return new Date(dateTime.getMillis());
+    public Date toView(LocalDate ld) {
+        return Date.from(ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
 }

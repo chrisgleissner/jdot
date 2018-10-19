@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@TypeMapping(values = { "com.github.jdot.mapper.DateTimeMapper" })
+@TypeMapping(values = { "com.github.jdot.mapper.LocalDateMapper" })
 @DomainSuperclass("com.github.jdot.test.domain.DomainObject")
 @ViewSuperclass("com.github.jdot.test.view.ViewObject")
 package com.github.jdot.test.domain;

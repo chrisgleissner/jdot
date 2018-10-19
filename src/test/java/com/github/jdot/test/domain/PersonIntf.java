@@ -16,19 +16,19 @@
 
 package com.github.jdot.test.domain;
 
-import java.util.Collection;
-
 import com.github.jdot.annotation.Domain;
 import com.github.jdot.annotation.Id;
 import com.github.jdot.annotation.TypeMapping;
-import org.joda.time.DateTime;
+
+import java.time.LocalDate;
+import java.util.Collection;
 
 @Domain
-@TypeMapping(values = { "com.github.jdot.mapper.DateTimeMapper" })
+@TypeMapping(values = { "com.github.jdot.mapper.LocalDateMapper" })
 public interface PersonIntf {
 
     @Id
-    DateTime getBirthday();
+    LocalDate getBirthday();
 
     Collection<? extends PersonIntf> getChildren();
 

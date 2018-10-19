@@ -16,52 +16,43 @@
 
 package com.github.jdot.test.mapper;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.joda.time.DateTime;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.google.common.collect.Lists;
 import com.github.jdot.test.domain.Person;
 import com.github.jdot.test.view.PersonView;
+import com.google.common.collect.Lists;
+import org.junit.Test;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PersonMapperTest {
 
-    private final static LocalDateTime DAD_BIRTHDAY = LocalDateTime.of(1970, 1, 1, 12, 0, 0, 0);
-    private final static LocalDateTime DAUGHTER_BIRTHDAY = LocalDateTime.of(2020, 1, 1, 12, 0, 0, 0);
-    private final static LocalDateTime SON_BIRTHDAY = LocalDateTime.of(2020, 1, 1, 12, 0, 0, 0);
-
-    @Before
-    public void before() {
-
-    }
+    private final static LocalDate DAD_BIRTHDAY = LocalDate.of(1975, 1, 1);
+    private final static LocalDate DAUGHTER_BIRTHDAY = LocalDate.of(2010, 1, 1);
+    private final static LocalDate SON_BIRTHDAY = LocalDate.of(2012, 1, 1);
 
     @Test
     public void mapPersonToPersonView() {
         Person dad = buildDad();
         Person dadClone = buildDad();
-        assertEquals(dad.hashCode(), dadClone.hashCode());
-        assertTrue(dad.equals(dadClone));
+        assertThat(dad.hashCode()).isEqualTo(dadClone.hashCode());
+        assertThat(dad).isEqualTo(dadClone);
+
         PersonView dadView = new PersonMapper().toView(dad);
-        assertEquals(dad.getName(), dadView.getName());
-        assertEquals(dad.getBirthday().getMillis(), dadView.getBirthday().getTime());
-        assertEquals(2, dadView.getChildren().size());
-        dadView.getChildren().iterator().next();
 
-        // TODO add more assertions
+        assertThat(dad.getName()).isEqualTo(dadView.getName());
+        assertThat(Date.from(dad.getBirthday().atStartOfDay(ZoneId.systemDefault()).toInstant())).isEqualTo(dadView.getBirthday());
 
+        assertThat(dadView.getChildren()).hasSize(2);
     }
 
     private Person buildDad() {
-        Person son = new Person.Builder().withBirthday(new DateTime()).withName("jack").build();
-        Person daughter = new Person.Builder().withBirthday(new DateTime()).withName("jill").build();
+        Person son = new Person.Builder().withBirthday(SON_BIRTHDAY).withName("jack").build();
+        Person daughter = new Person.Builder().withBirthday(DAUGHTER_BIRTHDAY).withName("jill").build();
         List<Person> children = Lists.newArrayList(son, daughter);
-        Person dad = new Person.Builder().withBirthday(new DateTime()).withName("john").withChildren(children).build();
-        return dad;
+        return new Person.Builder().withBirthday(DAD_BIRTHDAY).withName("john").withChildren(children).build();
     }
 }

@@ -34,7 +34,8 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <annotations.directory>${project.build.directory}/generated-sources/annotations</annotations.directory>
-        <test-annotations.directory>${project.build.directory}/generated-test-sources/test-annotations</test-annotations.directory>
+        <test-annotations.directory>${project.build.directory}/generated-test-sources/test-annotations
+        </test-annotations.directory>
     </properties>
 
     <build>
@@ -236,13 +237,6 @@
         </dependency>
 
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>1.6</version>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
@@ -253,6 +247,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.11.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

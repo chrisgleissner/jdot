@@ -59,7 +59,7 @@ public abstract class JavaFileBuilder<BUILDER extends JavaFileBuilder<?, ?>, JAV
 
     /**
      * Returns the domain or view type for the specified state, depending on how this builder was configured via the
-     * {@link #useViewTypes} method.
+     * {@link #useView} method.
      * 
      * @param state
      * @return

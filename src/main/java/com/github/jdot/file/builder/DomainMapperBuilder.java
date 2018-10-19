@@ -26,8 +26,6 @@ import com.github.jdot.file.DomainMapperClass;
 
 public class DomainMapperBuilder extends JavaFileBuilder<DomainMapperBuilder, DomainMapperClass> {
 
-    public static final String NAME_SUFFIX = "Mapper";
-
     public DomainMapperBuilder(DomainMapperClass domainMapperClass) {
         super(domainMapperClass);
     }
@@ -44,7 +42,7 @@ public class DomainMapperBuilder extends JavaFileBuilder<DomainMapperBuilder, Do
 
         // TypeMapper fields
         Map<String, String> typeMapperMap = javaFile.getDomainType().getDomainTypeToTypeMapperNameMap();
-        Map<String, String> typeMapperFieldMap = new HashMap<String, String>();
+        Map<String, String> typeMapperFieldMap = new HashMap<>();
         if (!typeMapperMap.isEmpty()) {
             int i = 0;
             fields.line("    // TypeMappers");
