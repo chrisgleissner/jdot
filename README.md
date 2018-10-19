@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/chrisgleissner/jdot/badge.svg?branch=master)](https://coveralls.io/github/chrisgleissner/jdot?branch=master)
 
 Java Domain Object Templater (JDot) is a code generator which keeps domain classes concise like a dot. 
-The generation is driven by annotations on your domain classes or interfaces and uses the compile-time Java 6 Annotation Processor.
+The generation is driven by annotations on your domain classes or interfaces and uses the compile-time javac annotation processor.
 
 ## Code Generation Driver
 The code generation may be driven by:
