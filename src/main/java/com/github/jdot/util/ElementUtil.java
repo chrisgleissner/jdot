@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,14 +27,10 @@ public class ElementUtil {
         String name = element.getSimpleName().toString();
         String packageName = element.getEnclosingElement().toString();
         return packageName + "." + name;
-
     }
 
     /**
      * Returns the visibility declared in the specified collection of modifiers. Returns an empty string if none found.
-     * 
-     * @param modifiers
-     * @return
      */
     public final static String getVisibility(Collection<Modifier> modifiers) {
         String visibility = "";

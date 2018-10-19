@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,6 @@ public interface NameMapper {
 
     /**
      * Applies the mapping defined by this instance to the specified source string.
-     * 
-     * @param source
-     * @return mapped source
      */
     String applyTo(String source);
 

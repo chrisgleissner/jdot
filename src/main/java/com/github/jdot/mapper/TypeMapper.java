@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,8 @@ package com.github.jdot.mapper;
 import com.github.jdot.annotation.TypeMapping;
 
 /**
- * Mapper for types of {@link Field}s and {@link Property}s on domain and view classes. Can be declared via the
+ * Mapper for types of fields and properties on domain and view classes. Can be declared via the
  * {@link TypeMapping} annotation on classes/interface or packages.
- * 
- * @author Christian Gleissner
- * @param <DOMAIN>
- * @param <VIEW>
  */
 public interface TypeMapper<DOMAIN, VIEW> {
 

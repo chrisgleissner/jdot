@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,9 +65,6 @@ public class TypeRegistry {
     /**
      * Returns the {@link Type} with the specified name. If the type is unknown to the registry, a new {@link Type}
      * instance is created with only its <code>name</code> field initialized.
-     * 
-     * @param name
-     * @return
      */
     public Type getType(String qualifiedName) {
         return getType(qualifiedName, null);
@@ -76,9 +73,6 @@ public class TypeRegistry {
     /**
      * Returns the {@link Type} for the specified element. If the type is unknown to the registry, a new {@link Type}
      * instance is created with only its <code>name</code> and <code>element</code> fields initialized.
-     * 
-     * @param name
-     * @return
      */
     public Type getType(TypeElement element) {
         return getType(ElementUtil.getQualifiedName(element));

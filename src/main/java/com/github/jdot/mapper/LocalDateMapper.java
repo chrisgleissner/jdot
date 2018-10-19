@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-/**
- * Mapper between {@code LocalDate} and {@link Date}.
- * 
- * @author Christian Gleissner
- */
 public class LocalDateMapper implements TypeMapper<LocalDate, Date> {
 
     @Override

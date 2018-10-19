@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,17 +23,11 @@ import java.util.regex.Pattern;
  * NameMapper which supports simple or regular expression mapping. Simple mapping replaces a string with the defined
  * target string if it exactly matches the source string. Regular expression mapping permits a standard Java regular
  * expression pattern for both source and target.
- * 
- * @author Christian Gleissner
  */
 public class RegexpNameMapper implements NameMapper {
     private Pattern pattern;
     private final String source;
     private final String target;
-
-    public RegexpNameMapper(String source, String target) {
-        this(source, target, false);
-    }
 
     public RegexpNameMapper(String source, String target, boolean regexp) {
         this.source = source;

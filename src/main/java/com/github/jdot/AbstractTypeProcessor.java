@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010-2016 Christian Gleissner
+ * Copyright (C) 2010-2018 Christian Gleissner
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.github.jdot.type.TypeRegistry;
 import com.github.jdot.annotation.Domain;
 
 /**
- * Adapter which makes a {@link TypeProcessor} accessible as a JDK 6 annotation {@link Processor}.
+ * Adapter which makes a {@link TypeProcessor} accessible as a Java annotation {@link Processor}.
  */
 public abstract class AbstractTypeProcessor extends AbstractProcessor implements TypeProcessor {
 
