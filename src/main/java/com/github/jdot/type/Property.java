@@ -16,16 +16,15 @@
 
 package com.github.jdot.type;
 
-import java.lang.annotation.Annotation;
-
+import com.github.jdot.mapper.NameMapper;
+import com.google.common.base.Joiner;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.type.TypeKind;
+import java.lang.annotation.Annotation;
 
-import com.github.jdot.mapper.NameMapper;
-import org.apache.commons.lang.StringUtils;
-
-import com.google.common.base.Joiner;
+import static com.google.common.base.CaseFormat.LOWER_CAMEL;
+import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 
 /**
  * JavaBean property declared by a {@link Type}.
@@ -66,12 +65,12 @@ public class Property extends State {
         if (propertyFound) {
             String methodName = element.getSimpleName().toString();
             if (methodName.startsWith("set") && Character.isUpperCase(methodName.charAt(3))) {
-                name = StringUtils.uncapitalize(methodName.substring(3));
+                name = uncapitalize(methodName.substring(3));
                 writeable = true;
             } else if (methodName.startsWith("get") && Character.isUpperCase(methodName.charAt(3))) {
-                name = StringUtils.uncapitalize(methodName.substring(3));
+                name = uncapitalize(methodName.substring(3));
             } else if (methodName.startsWith("is") && Character.isUpperCase(methodName.charAt(2))) {
-                name = StringUtils.uncapitalize(methodName.substring(2));
+                name = uncapitalize(methodName.substring(2));
             } else {
                 propertyFound = false;
             }
@@ -100,14 +99,21 @@ public class Property extends State {
         return beanProperty;
     }
 
+    private static String uncapitalize(String s) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Character.toLowerCase(s.charAt(0)));
+        sb.append(s.substring(1));
+        return sb.toString();
+    }
+
     public static String getPropertyName(String methodName) {
         String propertyName = "";
         if (methodName.startsWith("set")) {
-            propertyName = StringUtils.uncapitalize(methodName.substring(3));
+            propertyName = uncapitalize(methodName.substring(3));
         } else if (methodName.startsWith("get")) {
-            propertyName = StringUtils.uncapitalize(methodName.substring(3));
+            propertyName = uncapitalize(methodName.substring(3));
         } else if (methodName.startsWith("is")) {
-            propertyName = StringUtils.uncapitalize(methodName.substring(2));
+            propertyName = uncapitalize(methodName.substring(2));
         } else {
             throw new RuntimeException("Method does not declare JavaBean property: " + methodName);
         }

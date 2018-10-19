@@ -29,33 +29,6 @@
         </license>
     </licenses>
 
-    <organization>
-        <name>none</name>
-    </organization>
-
-    <developers>
-        <developer>
-            <id>chrisgleissner</id>
-            <name>Christian Gleissner</name>
-            <organization>none</organization>
-            <email>chrisgleissner@gmail.com</email>
-            <timezone>0</timezone>
-            <roles>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-            </plugin>
-        </plugins>
-    </reporting>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <annotations.directory>${project.build.directory}/generated-sources/annotations</annotations.directory>
@@ -66,7 +39,7 @@
     <build>
         <plugins>
             <!--
-                Generates sources via the Java 6 annotation processor, then compiles them. The compile and testCompile
+                Generates sources via the javac annotation processor, then compiles them. The compile and testCompile
                 goals gets referenced in two different phases each. Phase 1: Generates (test) sources and attempts
                 compilation whilst ignoring benign javac warnings. Phase 2: Compiles if necessary and breaks the build
                 if javac reports any errors. This two-phase approach is required because the Maven compiler plugin 2.2
@@ -77,10 +50,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.8.0</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <release>11</release>
                 </configuration>
                 <executions>
                     <!-- Generation and compilation of main sources -->
@@ -168,7 +140,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>build-helper-maven-plugin</artifactId>
-                        <version>1.5</version>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
                                 <id>add-source</id>
@@ -204,9 +176,7 @@
             Enable this profile if your IDE fails to recognize generated sources under the target folder. Sample usage:
             mvn install -Pgen2src. This profile generates sources under the src rather than target folder and thus
             prepares them for a later commit. The approach of committing generated sources is not elegant, but can be
-            used to avoid problems with some IDEs that fail to register generated sources properly. Source control
-            repositories such as Subversion which automatically perform a content diff on files prior to commit can
-            handle this set-up well and won't try to re-commit any re-generated files unless their contents changed.
+            used to avoid problems with some IDEs that fail to register generated sources properly.
             Enabling this profile will automatically disable the default profile "gen2target".
         -->
         <profile>
@@ -259,9 +229,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version>1.0</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>26.0-jre</version>
         </dependency>
 
         <dependency>

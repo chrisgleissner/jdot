@@ -19,6 +19,7 @@ package com.github.jdot.test.mapper;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -31,9 +32,9 @@ import com.github.jdot.test.view.PersonView;
 
 public class PersonMapperTest {
 
-    private final static DateTime DAD_BIRTHDAY = new DateTime(1970, 1, 1, 12, 0, 0, 0);
-    private final static DateTime DAUGHTER_BIRTHDAY = new DateTime(2020, 1, 1, 12, 0, 0, 0);
-    private final static DateTime SON_BIRTHDAY = new DateTime(2020, 1, 1, 12, 0, 0, 0);
+    private final static LocalDateTime DAD_BIRTHDAY = LocalDateTime.of(1970, 1, 1, 12, 0, 0, 0);
+    private final static LocalDateTime DAUGHTER_BIRTHDAY = LocalDateTime.of(2020, 1, 1, 12, 0, 0, 0);
+    private final static LocalDateTime SON_BIRTHDAY = LocalDateTime.of(2020, 1, 1, 12, 0, 0, 0);
 
     @Before
     public void before() {
