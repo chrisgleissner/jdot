@@ -18,7 +18,7 @@ package com.github.jdot.file.builder;
 
 import com.github.jdot.file.JavaFile;
 import com.github.jdot.type.State;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Builder for a static inner builder class which is placed inside an immutable domain class.

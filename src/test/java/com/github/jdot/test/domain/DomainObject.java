@@ -18,7 +18,7 @@ package com.github.jdot.test.domain;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public abstract class DomainObject implements Serializable {
 

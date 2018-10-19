@@ -18,7 +18,7 @@ package com.github.jdot.file.builder;
 
 import com.github.jdot.file.JavaFile;
 import com.github.jdot.type.Field;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.github.jdot.type.Property;
 

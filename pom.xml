@@ -30,10 +30,11 @@
     </licenses>
 
     <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <annotations.directory>${project.build.directory}/generated-sources/annotations</annotations.directory>
-        <test-annotations.directory>${project.build.directory}/generated-sources/test-annotations
-        </test-annotations.directory>
+        <test-annotations.directory>${project.build.directory}/generated-test-sources/test-annotations</test-annotations.directory>
     </properties>
 
     <build>
@@ -235,12 +236,6 @@
         </dependency>
 
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-        <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>1.6</version>
@@ -252,6 +247,12 @@
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
         </dependency>
     </dependencies>
 
